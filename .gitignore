@@ -139,6 +139,5 @@ nohup.out
 /test/
 test-results/
 in/
-output/
 **/tmp/
 **/temp/
