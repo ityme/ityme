@@ -7,11 +7,27 @@
 ## contribution playground
 
 <p align="center">
-  <a href="https://github.com/egorthinks/git-bonsai">🌳 git-bonsai</a>
-  &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="https://github.com/Platane/snk">🐍 contribution snake</a>
-  &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="https://github.com/cyprieng/github-breakout">🧱 github breakout</a>
+  <a href="https://github.com/egorthinks/git-bonsai">
+    <img src="output/bonsai-growth.gif" width="320" alt="git-bonsai grown from my GitHub activity" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://github.com/Platane/snk">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="output/github-snake-dark.svg" />
+      <source media="(prefers-color-scheme: light)" srcset="output/github-snake.svg" />
+      <img src="output/github-snake.svg" width="420" alt="snake eating my GitHub contributions" />
+    </picture>
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/cyprieng/github-breakout">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="output/breakout/dark.svg" />
+      <source media="(prefers-color-scheme: light)" srcset="output/breakout/light.svg" />
+      <img src="output/breakout/light.svg" width="720" alt="breakout game generated from my GitHub contributions" />
+    </picture>
+  </a>
 </p>
 
 <p align="center">
