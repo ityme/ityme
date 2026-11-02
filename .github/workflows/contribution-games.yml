@@ -4,9 +4,20 @@ on:
   schedule:
     - cron: "23 3 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - README.md
+      - .github/workflows/bonsai.yml
+      - .github/workflows/contribution-games.yml
 
 permissions:
   contents: write
+
+concurrency:
+  group: profile-generated-assets
+  cancel-in-progress: false
 
 jobs:
   generate:
@@ -29,10 +40,21 @@ jobs:
           github_username: ${{ github.repository_owner }}
           output_path: output/breakout
 
+      - name: Download gh-ascii profile cards
+        run: |
+          curl --fail --location --retry 3 --retry-delay 2 "https://gh.crafter.run/${GITHUB_REPOSITORY_OWNER}?theme=dark" --output dark_mode.svg
+          curl --fail --location --retry 3 --retry-delay 2 "https://gh.crafter.run/${GITHUB_REPOSITORY_OWNER}?theme=light" --output light_mode.svg
+          grep -q '<svg' dark_mode.svg
+          grep -q '<svg' light_mode.svg
+
       - name: Commit generated images
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add output/github-snake.svg output/github-snake-dark.svg output/breakout/light.svg output/breakout/dark.svg
-          git diff --cached --quiet || git commit -m "chore: update contribution games"
+          git add output/github-snake.svg output/github-snake-dark.svg output/breakout/light.svg output/breakout/dark.svg dark_mode.svg light_mode.svg
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore: update contribution games"
+          git pull --rebase origin main
           git push

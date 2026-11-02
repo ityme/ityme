@@ -3,8 +3,17 @@ on:
   schedule:
     - cron: '0 3 * * *'   # re-grow daily
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - README.md
+      - .github/workflows/bonsai.yml
 permissions:
   contents: write
+concurrency:
+  group: profile-generated-assets
+  cancel-in-progress: false
 jobs:
   grow:
     runs-on: ubuntu-latest
